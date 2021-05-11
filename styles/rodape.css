@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.footer {
+    width: 100%;
+    height: 200px;
+    background: rgb(0, 7, 152);
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+.footer_logo {
+    align-self: center;
+    width: 200px;
+    height: 100px;
+}
