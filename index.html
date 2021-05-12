@@ -1,3 +1,5 @@
+<!--API reCAPTCHA GOOGLE-->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -5,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/logo.png">
+    <link rel="shortcut icon" href="./assets/logodados.png">
     <link rel="stylesheet" type="text/css" href="./styles/cabecalho.css">
     <link rel="stylesheet" type="text/css" href="./styles/index.css">
     <link rel="stylesheet" type="text/css" href="./styles/rodape.css">
@@ -22,8 +24,8 @@
             <div class="navigation">
                 <a class="links" href="#">Home</a>
                 <a class="links" href="#assistencia">Assistência Técnica</a>
-                <a class="links" href="#">Serviços</a>
-                <a class="links" href="#">Contato</a>
+                <a class="links" href="#servicos">Serviços</a>
+                <a class="links" href="#contato">Contato</a>
             </div>
         </div>
     </header>
@@ -51,7 +53,7 @@
             </div>
         </section>
     </div>
-    <div id="assistencia" class="assistencia">
+    <div class="assistencia" id="assistencia">
         <div class="assistencia_title">
             <h1>ASSISTÊNCIA TÉCNICA AUTORIZADA</h1>
         </div>
@@ -68,6 +70,44 @@
             </div>
         </div>
     </div>
+    <div class="servicos" id="servicos">
+        <div class="servicos_titulo">
+            <h1>NOSSOS SERVIÇOS</h1>
+        </div>
+        <div class="servicos_conteudo">
+            <div class="servicos_conteudo_s1">
+                <img src="assets/servicos1.webp">
+                <h2 class="conteudo_titulo">Serviços de Assesoria</h2>
+                <p class="conteudo_paragrafo">Conhecer a retaguarda dos estabelecimentos de saúde permite saber as reais necessidades e oferecer soluções otimizadas, com foco em funcionalidade, operacionalidade e geração de economia. Quando tiver dúvidas ao adquiri equipamentos, solicite
+                    nossa assessoria.
+                </p>
+            </div>
+            <div class="servicos_conteudo_s2">
+                <img src="assets/servicos2.webp">
+                <h2 class="conteudo_titulo">Contratos de Manutenção</h2>
+                <p class="conteudo_paragrafo">Mais do que apenas revisões e relatórios, tenha na Dummer Tecnologia a tranquilidade de que seu parque tecnológico está sob a responsabilidade técnica e cível de profissionais ligados aos conselhos e às agências fiscalizadoras, os quais
+                    lhe ajudarão sempre que houver exigências das agências sobre sua documentação, além de manter seus equipamentos em pleno funcionamento.</p>
+            </div>
+            <div class="servicos_conteudo_s3">
+                <img src="assets/servicos3.webp">
+                <h2 class="conteudo_titulo">Serviços de alta complexidade</h2>
+                <p class="conteudo_paragrafo">Manutenção em ventiladores pulmonares, aparelhos de anestesia, microscópios cirúrgicos e biológicos, ampliação e reparos em redes de gases medicinais, automação e modernização de autoclaves e automações diversas.</p>
+            </div>
+        </div>
+    </div>
+    <div class="contato_e_mapa" id="contato">
+        <div class="contato">
+            <h1 class="contato_titulo">CONTATO</h1>
+            <p class="contato_info">Nome: </p>
+            <input id="nome" type="name" placeholder="Digite seu nome">
+            <p class="contato_info">E-mail: </p>
+            <input id="email" type="email" placeholder="Digite seu e-mail">
+            <p class="contato_info">Mensagem: </p>
+            <textarea id="mensagem" placeholder="Digite sua mensagem"></textarea>
+        </div>
+        <div class="mapa"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.638313106403!2d-51.09391188527299!3d-30.04723268188128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95199e095f7cd2f9%3A0xf50e612416d8c7e0!2sAv.%20Prot%C3%A1sio%20Alves%2C%2012403%20-%20M%C3%A1rio%20Quintana%2C%20Porto%20Alegre%20-%20RS%2C%2091260-000!5e0!3m2!1spt-BR!2sbr!4v1620837906711!5m2!1spt-BR!2sbr"
+                width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+    </div>
     <div class="footer">
         <img class="footer_logo" src="assets/logodados.png">
         <address>
@@ -75,6 +115,7 @@
         </address>
         <p>(51) 9 8132-4965</p>
         <p>at@dummer.srv.br</p>
+        <p>10.948.006/0001-49</p>
         <p>&copy Dummer Tecnologia Hospitalar</p>
     </div>
 </body>
