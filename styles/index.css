@@ -15,7 +15,7 @@ body {
     width: 90%;
     height: 100%;
     position: relative;
-    margin: 50px auto;
+    margin: 150px auto 0 auto;
 }
 
 .slider_about_us section {
@@ -136,4 +136,8 @@ body {
 .assistencia_images {
     width: auto;
     height: auto;
+}
+.teste{
+    width: 100px;
+    height: 1000px;
 }
