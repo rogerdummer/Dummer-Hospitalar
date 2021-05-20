@@ -1,7 +1,44 @@
 <!--API reCAPTCHA GOOGLE
-6LcUFNIaAAAAAE-8Gg-ZUim3LfyYc0LGwqRV_vY4
+Site Key: 6LeCn9waAAAAANyJurvyXGeXy1Jn9G6EbzeKg0BW
+Secret Key: 6LeCn9waAAAAAFFx1qhWeQbt1l4zSICNUhgalcFV
 -->
+<?php
+if(isset($_POST['submit'])){
+    
+    $secretKey = "6LeCn9waAAAAAFFx1qhWeQbt1l4zSICNUhgalcFV";
+    $responseKey =$_POST['g-recaptcha-response'];
+    $userIP = $_SERVER['REMOTE_ADDR'];
 
+    $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
+    $response = file_get_contents($url);
+    $json_response = json_decode($response);
+
+    if($json_response->success){
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $msg = $_POST['msg'];
+
+        $email_remetente = "rd.estudar@gmail.com";
+        $email_destinatario = "rogerdummer@gmail.com";
+        $email_reply = "$email";
+        $email_assunto = "Contato do site";
+
+        $email_conteudo = "Nome = $nome \n";
+        $email_conteudo .= "Email = $email \n";
+        $email_conteudo .= "Mensagem = $msg \n";
+
+        $email_headers = implode ( "\n",array ( "From: $email_remetente", "Reply-To: $email_reply", "Return-Path: $email_remetente","MIME-Version: 1.0","X-Priority: 3","Content-Type: text/html; charset=UTF-8" ) );
+
+        if (mail ($email_destinatario, $email_assunto, nl2br($email_conteudo), $email_headers)){ 
+            echo "</b>E-Mail enviado com sucesso!</b>"; 
+            } else {
+                echo "</b>Falha no envio do E-Mail!</b>";
+            }
+    } else {
+        echo "Erro!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -104,35 +141,35 @@
     <div class="space_between" id="space_between_contato"></div>
     <div class="contato_e_mapa" id="contato">
         <div class="contato">
-            <form action="index.php" method="POST" target="_top">
-                <h1 class="contato_titulo">CONTATO</h1>
-                <p class="contato_info">Nome: </p>
-                <input id="nome" type="name" placeholder="Digite seu nome" required>
-                <p class="contato_info">E-mail: </p>
-                <input id="email" type="email" placeholder="Digite seu e-mail" required>
-                <p class="contato_info">Mensagem: </p>
-                <textarea id="mensagem" placeholder="Digite sua mensagem" required></textarea>
-                <div class="botao_e_captcha">
-                    <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LeC39EaAAAAALIS2He-9skDy66QHXV-_HgvP218"></div>
-                    <button id="bt_enviar">ENVIAR</button>
-                </div>
+            <form action="<?php $PHP_SELF; ?>" method="POST">
+            <h1 class="contato_titulo">CONTATO</h1>
+            <p class="contato_info">Nome: </p>
+            <input id="nome" value="" required="" name="nome" type="name" placeholder="Digite seu nome">
+            <p class="contato_info">E-mail: </p>
+            <input id="email" value="" required="" name="email" type="email" placeholder="Digite seu e-mail">
+            <p class="contato_info">Mensagem: </p>
+            <textarea id="mensagem" value="" name="msg" placeholder="Digite sua mensagem" required></textarea>
+            <div class="botao_e_captcha">
+            <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LeCn9waAAAAANyJurvyXGeXy1Jn9G6EbzeKg0BW"></div>
+            <button type="submit" name="submit" id="bt_enviar">ENVIAR</button>
+            </div>
             </form>
         </div>
         <div class="mapa"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.638313106403!2d-51.09391188527299!3d-30.04723268188128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95199e095f7cd2f9%3A0xf50e612416d8c7e0!2sAv.%20Prot%C3%A1sio%20Alves%2C%2012403%20-%20M%C3%A1rio%20Quintana%2C%20Porto%20Alegre%20-%20RS%2C%2091260-000!5e0!3m2!1spt-BR!2sbr!4v1620837906711!5m2!1spt-BR!2sbr"
                 width="600" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
     </div>
     <footer>
-        <div class="footer">
-            <img class="footer_logo" src="assets/logodados.png">
-            <address>
+    <div class="footer">
+        <img class="footer_logo" src="assets/logodados.png">
+        <address>
             <p>Av. Protásio Alves, 12403, Mário Quintana - Porto Alegre, RS - 91260-000</p>
         </address>
-            <p>(51) 9 8132-4965</p>
-            <p>at@dummer.srv.br</p>
-            <p>10.948.006/0001-49</p>
-            <p>&copy Dummer Tecnologia Hospitalar</p>
-        </div>
-    </footer>
+        <p>(51) 9 8132-4965</p>
+        <p>at@dummer.srv.br</p>
+        <p>10.948.006/0001-49</p>
+        <p>&copy Dummer Tecnologia Hospitalar</p>
+    </div>
+</footer>
 </body>
 
 </html>
