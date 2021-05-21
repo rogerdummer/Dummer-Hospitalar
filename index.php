@@ -1,11 +1,12 @@
 <!--API reCAPTCHA GOOGLE
-Site Key: 6LeCn9waAAAAANyJurvyXGeXy1Jn9G6EbzeKg0BW
-Secret Key: 6LeCn9waAAAAAFFx1qhWeQbt1l4zSICNUhgalcFV
+Site Key: 6LdG_90aAAAAAIK8l1KYMSnoYv4dqBkhitVfY9Xp
+Secret Key: 6LdG_90aAAAAAFqTlqJy7-EL8hbfEoZtKpQvI0ON
 -->
 <?php
+include "PHPMailer/PHPMailerAutoload.php"; 
 if(isset($_POST['submit'])){
     
-    $secretKey = "6LeCn9waAAAAAFFx1qhWeQbt1l4zSICNUhgalcFV";
+    $secretKey = "6LdG_90aAAAAAFqTlqJy7-EL8hbfEoZtKpQvI0ON";
     $responseKey =$_POST['g-recaptcha-response'];
     $userIP = $_SERVER['REMOTE_ADDR'];
 
@@ -18,24 +19,32 @@ if(isset($_POST['submit'])){
         $email = $_POST['email'];
         $msg = $_POST['msg'];
 
-        $email_remetente = "rd.estudar@gmail.com";
-        $email_destinatario = "rogerdummer@gmail.com";
-        $email_reply = "$email";
-        $email_assunto = "Contato do site";
-
-        $email_conteudo = "Nome = $nome \n";
-        $email_conteudo .= "Email = $email \n";
-        $email_conteudo .= "Mensagem = $msg \n";
-
-        $email_headers = implode ( "\n",array ( "From: $email_remetente", "Reply-To: $email_reply", "Return-Path: $email_remetente","MIME-Version: 1.0","X-Priority: 3","Content-Type: text/html; charset=UTF-8" ) );
-
-        if (mail ($email_destinatario, $email_assunto, nl2br($email_conteudo), $email_headers)){ 
-            echo "</b>E-Mail enviado com sucesso!</b>"; 
-            } else {
-                echo "</b>Falha no envio do E-Mail!</b>";
-            }
+        $mail = new PHPMailer();
+        $mail->IsSMTP(); 
+        $mail->Host = "smtp.dummer.srv.br"; 
+        $mail->Port = 587;  
+        $mail->SMTPAuth = true; 
+        $mail->Username = 'roger@dummer.srv.br'; 
+        $mail->Password = 'Verde14'; 
+        $mail->SMTPOptions = array( 'ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) ); 
+        $mail->From = "roger@dummer.srv.br";
+        $mail->FromName = "Site Dummer Tecnologia"; 
+        $mail->AddAddress('roger@dummer.srv.br', 'Roger');
+        $mail->IsHTML(false);
+        $mail->CharSet = 'UTF-8';
+        $mail->Subject = "Mensagem de contato do site"; 
+        $mail->Body = "Nome: ".$nome."\nE-mail: ".$email."\nMensagem: ".$msg."\n";
+        $enviado = $mail->Send();
+        if ($enviado){
+            ?><script>alert("E-mail enviado!");</script>
+            <?php
+        } else {
+            ?><script>alert("E-mail não enviado!");</script>
+            <?php
+        } 
     } else {
-        echo "Erro!";
+        ?><script>alert("Por favor, preencha o captcha!");</script>
+        <?php
     }
 }
 ?>
@@ -150,7 +159,7 @@ if(isset($_POST['submit'])){
             <p class="contato_info">Mensagem: </p>
             <textarea id="mensagem" value="" name="msg" placeholder="Digite sua mensagem" required></textarea>
             <div class="botao_e_captcha">
-            <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LeCn9waAAAAANyJurvyXGeXy1Jn9G6EbzeKg0BW"></div>
+            <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LdG_90aAAAAAIK8l1KYMSnoYv4dqBkhitVfY9Xp"></div>
             <button type="submit" name="submit" id="bt_enviar">ENVIAR</button>
             </div>
             </form>
