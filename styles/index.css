@@ -302,6 +302,7 @@ body {
 }
 
 .campos,
+.captcha,
 .processando,
 .email_ok,
 .email_nok {
@@ -309,14 +310,16 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: 25px;
     border-radius: 10px;
     font-family: 'Arial', sans-serif;
     font-size: 20px;
+    margin: auto;
 }
 
 .processando,
-.campos {
+.campos,
+.captcha {
     color: white;
     background: rgb(0, 7, 152, 0.5);
 }
@@ -328,5 +331,5 @@ body {
 
 .email_nok {
     color: red;
-    background: lightgreen;
+    background: lightcoral;
 }

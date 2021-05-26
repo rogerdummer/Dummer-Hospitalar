@@ -17,6 +17,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let bt_enviar = document.getElementById("bt_enviar");
 
     bt_enviar.addEventListener("click", () => {
+        let captcha = document.getElementById("google_captcha");
+
+
+
         let u_nome = document.getElementById("nome").value;
         let u_email = document.getElementById("email").value;
         let u_mensagem = document.getElementById("mensagem").value;
@@ -25,8 +29,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         if (u_nome.length == 0 || u_email.length == 0 || u_mensagem.length == 0) {
             div_campos.style.display = 'flex';
+            setTimeout(function() {
+                div_campos.style.display = 'none';
+            }, 3000);
         } else {
-
             let div_processando = document.getElementById("processando");
             let div_email_ok = document.getElementById("email_ok");
             let div_email_nok = document.getElementById("email_nok");
@@ -43,10 +49,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     if (data == "Ok") {
                         div_processando.style.display = 'none';
                         div_email_ok.style.display = 'flex';
+                        setTimeout(function() {
+                            div_email_ok.style.display = 'none';
+                        }, 3000);
+                        document.getElementById("nome").value = '';
+                        document.getElementById("email").value = '';
+                        document.getElementById("mensagem").value = '';
 
                     } else {
                         div_processando.style.display = 'none';
                         div_email_nok.style.display = 'flex';
+                        setTimeout(function() {
+                            div_email_nok.style.display = 'none';
+                        }, 3000);
                     }
                 }
             });
