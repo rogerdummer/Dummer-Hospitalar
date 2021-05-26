@@ -1,53 +1,3 @@
-<!--API reCAPTCHA GOOGLE
-Site Key: 6LdG_90aAAAAAIK8l1KYMSnoYv4dqBkhitVfY9Xp
-Secret Key: 6LdG_90aAAAAAFqTlqJy7-EL8hbfEoZtKpQvI0ON
--->
-<?php
-include "PHPMailer/PHPMailerAutoload.php"; 
-if(isset($_POST['submit'])){
-    
-    $secretKey = "6LdG_90aAAAAAFqTlqJy7-EL8hbfEoZtKpQvI0ON";
-    $responseKey =$_POST['g-recaptcha-response'];
-    $userIP = $_SERVER['REMOTE_ADDR'];
-
-    $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
-    $response = file_get_contents($url);
-    $json_response = json_decode($response);
-
-    if($json_response->success){
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $msg = $_POST['msg'];
-
-        $mail = new PHPMailer();
-        $mail->IsSMTP(); 
-        $mail->Host = "smtp.dummer.srv.br"; 
-        $mail->Port = 587;  
-        $mail->SMTPAuth = true; 
-        $mail->Username = 'roger@dummer.srv.br'; 
-        $mail->Password = 'Verde14'; 
-        $mail->SMTPOptions = array( 'ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) ); 
-        $mail->From = "roger@dummer.srv.br";
-        $mail->FromName = "Site Dummer Tecnologia"; 
-        $mail->AddAddress('roger@dummer.srv.br', 'Roger');
-        $mail->IsHTML(false);
-        $mail->CharSet = 'UTF-8';
-        $mail->Subject = "Mensagem de contato do site"; 
-        $mail->Body = "Nome: ".$nome."\nE-mail: ".$email."\nMensagem: ".$msg."\n";
-        $enviado = $mail->Send();
-        if ($enviado){
-            ?><script>alert("E-mail enviado!");</script>
-            <?php
-        } else {
-            ?><script>alert("E-mail não enviado!");</script>
-            <?php
-        } 
-    } else {
-        ?><script>alert("Por favor, preencha o captcha!");</script>
-        <?php
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -61,6 +11,8 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" type="text/css" href="./styles/rodape.css">
     <title>Dummer Tecnologia Hospitalar</title>
     <script type="text/javascript" src="./js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 
@@ -150,7 +102,7 @@ if(isset($_POST['submit'])){
     <div class="space_between" id="space_between_contato"></div>
     <div class="contato_e_mapa" id="contato">
         <div class="contato">
-            <form action="<?php $PHP_SELF; ?>" method="POST">
+            <form method="POST">
             <h1 class="contato_titulo">CONTATO</h1>
             <p class="contato_info">Nome: </p>
             <input id="nome" value="" required="" name="nome" type="name" placeholder="Digite seu nome">
@@ -160,8 +112,12 @@ if(isset($_POST['submit'])){
             <textarea id="mensagem" value="" name="msg" placeholder="Digite sua mensagem" required></textarea>
             <div class="botao_e_captcha">
             <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LdG_90aAAAAAIK8l1KYMSnoYv4dqBkhitVfY9Xp"></div>
-            <button type="submit" name="submit" id="bt_enviar">ENVIAR</button>
+            <button type="button" name="submit" id="bt_enviar">ENVIAR</button>
             </div>
+            <div class="campos" id="campos"><p>Preencha os campos em branco!</p></div>
+            <div class="processando" id="processando"><p>Enviando e-mail!</p></div>
+            <div class="email_ok" id="email_ok"><p>E-mail enviado!</p></div>
+            <div class="email_nok" id="email_nok"><p>E-mail não enviado!</p></div>
             </form>
         </div>
         <div class="mapa"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.638313106403!2d-51.09391188527299!3d-30.04723268188128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95199e095f7cd2f9%3A0xf50e612416d8c7e0!2sAv.%20Prot%C3%A1sio%20Alves%2C%2012403%20-%20M%C3%A1rio%20Quintana%2C%20Porto%20Alegre%20-%20RS%2C%2091260-000!5e0!3m2!1spt-BR!2sbr!4v1620837906711!5m2!1spt-BR!2sbr"
