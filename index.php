@@ -20,7 +20,7 @@
     <header>
         <div class="header">
             <div class="logo">
-                <a href="index.html"><img id="img1" src="./assets/logodados.png" alt="Logo Dummer Hospitalar"></a>
+                <a href="index.php"><img id="img1" src="./assets/logodados.png" alt="Logo Dummer Hospitalar"></a>
             </div>
             <div class="navigation">
                 <a class="links" href="#space_between_home">Home</a>
@@ -111,13 +111,14 @@
             <p class="contato_info">Mensagem: </p>
             <textarea id="mensagem" value="" name="msg" placeholder="Digite sua mensagem" required></textarea>
             <div class="botao_e_captcha">
-            <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LdG_90aAAAAAIK8l1KYMSnoYv4dqBkhitVfY9Xp"></div>
+            <div id="google_captcha" class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LdG_90aAAAAAIK8l1KYMSnoYv4dqBkhitVfY9Xp"></div>
             <button type="button" name="submit" id="bt_enviar">ENVIAR</button>
             </div>
-            <div class="campos" id="campos"><p>Preencha os campos em branco!</p></div>
+            <div class="captcha" id="captcha"><p>Por favor, preencha o captcha!</p></div>
+            <div class="campos" id="campos"><p>Por favor, preencha os campos em branco!</p></div>
             <div class="processando" id="processando"><p>Enviando e-mail!</p></div>
             <div class="email_ok" id="email_ok"><p>E-mail enviado!</p></div>
-            <div class="email_nok" id="email_nok"><p>E-mail não enviado!</p></div>
+            <div class="email_nok" id="email_nok"><p>E-mail não enviado. Tente novamente!</p></div>
             </form>
         </div>
         <div class="mapa"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.638313106403!2d-51.09391188527299!3d-30.04723268188128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95199e095f7cd2f9%3A0xf50e612416d8c7e0!2sAv.%20Prot%C3%A1sio%20Alves%2C%2012403%20-%20M%C3%A1rio%20Quintana%2C%20Porto%20Alegre%20-%20RS%2C%2091260-000!5e0!3m2!1spt-BR!2sbr!4v1620837906711!5m2!1spt-BR!2sbr"

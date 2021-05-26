@@ -1,5 +1,6 @@
 <?php
 include "PHPMailer/PHPMailerAutoload.php";
+header("Access-Control-Allow-Origin: *");
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $msg = $_POST['msg'];
