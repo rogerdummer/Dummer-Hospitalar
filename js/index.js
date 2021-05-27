@@ -17,9 +17,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let bt_enviar = document.getElementById("bt_enviar");
 
     bt_enviar.addEventListener("click", () => {
-        let captcha = document.getElementById("google_captcha");
-
-
+        let captcha_response = grecaptcha.getResponse();
+        let div_captcha = document.getElementById("captcha");
 
         let u_nome = document.getElementById("nome").value;
         let u_email = document.getElementById("email").value;
@@ -32,39 +31,63 @@ document.addEventListener("DOMContentLoaded", function(event) {
             setTimeout(function() {
                 div_campos.style.display = 'none';
             }, 3000);
+        } else if (captcha_response.length == 0) {
+            div_captcha.style.display = 'flex';
+            setTimeout(function() {
+                div_captcha.style.display = 'none';
+            }, 3000);
         } else {
             let div_processando = document.getElementById("processando");
             let div_email_ok = document.getElementById("email_ok");
             let div_email_nok = document.getElementById("email_nok");
-            div_campos.style.display = 'none';
-            div_processando.style.display = 'flex';
 
             $.ajax({
-                url: 'https://localhost/Dummer/sendmail.php',
+                url: 'https://localhost/Dummer/verifyCaptcha.php',
                 type: 'POST',
-                data: { nome: u_nome, email: u_email, msg: u_mensagem },
+                data: { g_recaptcha_response: captcha_response },
                 dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    if (data == "Ok") {
-                        div_processando.style.display = 'none';
-                        div_email_ok.style.display = 'flex';
-                        setTimeout(function() {
-                            div_email_ok.style.display = 'none';
-                        }, 3000);
-                        document.getElementById("nome").value = '';
-                        document.getElementById("email").value = '';
-                        document.getElementById("mensagem").value = '';
+                success: function(data_captcha) {
+                    if (data_captcha == "Captcha_Ok") {
+                        div_processando.style.display = 'flex';
+                        $.ajax({
+                            url: 'https://localhost/Dummer/sendmail.php',
+                            type: 'POST',
+                            data: { nome: u_nome, email: u_email, msg: u_mensagem },
+                            dataType: 'json',
+                            success: function(data) {
+                                console.log(data);
+                                if (data == "Ok") {
+                                    div_processando.style.display = 'none';
+                                    div_email_ok.style.display = 'flex';
+                                    setTimeout(function() {
+                                        u_nome.value = '';
+                                        u_email = '';
+                                        u_mensagem = '';
+                                        div_email_ok.style.display = 'none';
+                                        location.reload();
+                                    }, 3000);
 
-                    } else {
+                                } else {
+                                    div_processando.style.display = 'none';
+                                    div_email_nok.style.display = 'flex';
+                                    setTimeout(function() {
+                                        div_email_nok.style.display = 'none';
+                                    }, 3000);
+                                }
+                            }
+                        });
+                    } else if (data_captcha == "Captcha_NOk") {
                         div_processando.style.display = 'none';
                         div_email_nok.style.display = 'flex';
                         setTimeout(function() {
                             div_email_nok.style.display = 'none';
                         }, 3000);
+
                     }
                 }
+
             });
+
         }
     });
 });

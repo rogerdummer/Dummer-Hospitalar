@@ -1,7 +1,3 @@
-<!--API reCAPTCHA GOOGLE
-6LcUFNIaAAAAAE-8Gg-ZUim3LfyYc0LGwqRV_vY4
--->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -15,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="./styles/rodape.css">
     <title>Dummer Tecnologia Hospitalar</title>
     <script type="text/javascript" src="./js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 
@@ -22,7 +20,7 @@
     <header>
         <div class="header">
             <div class="logo">
-                <a href="index.html"><img id="img1" src="./assets/logodados.png" alt="Logo Dummer Hospitalar"></a>
+                <a href="index.php"><img id="img1" src="./assets/logodados.png" alt="Logo Dummer Hospitalar"></a>
             </div>
             <div class="navigation">
                 <a class="links" href="#space_between_home">Home</a>
@@ -38,7 +36,7 @@
             <div id="content1" class="content1">
                 <div class="content1_right">
                     <h1 class="content1_right_title">DUMMER TECNOLOGIA</h1>
-                    <p class="content1_right_text">Há 11 anos oferecendo serviços diferenciados e exclusivos com o atributo que considera a máxima em atendimento ao cliente: Pessoalidade.</p>
+                    <p class="content1_right_text">Há 11 anos oferecendo serviços diferenciados e exclusivos com o atributo que considera a máxima em atendimento ao cliente: a Pessoalidade.</p>
                 </div>
                 <div class="content1_left">
                     <img class="atb_pessoalidade" src="assets/pessoalidade.jpg" alt="atb_pessoalidade">
@@ -104,17 +102,32 @@
     <div class="space_between" id="space_between_contato"></div>
     <div class="contato_e_mapa" id="contato">
         <div class="contato">
-            <form action="index.php" method="POST" target="_top">
+            <form method="POST">
                 <h1 class="contato_titulo">CONTATO</h1>
                 <p class="contato_info">Nome: </p>
-                <input id="nome" type="name" placeholder="Digite seu nome" required>
+                <input id="nome" value="" required="" name="nome" type="name" placeholder="Digite seu nome">
                 <p class="contato_info">E-mail: </p>
-                <input id="email" type="email" placeholder="Digite seu e-mail" required>
+                <input id="email" value="" required="" name="email" type="email" placeholder="Digite seu e-mail">
                 <p class="contato_info">Mensagem: </p>
-                <textarea id="mensagem" placeholder="Digite sua mensagem" required></textarea>
+                <textarea id="mensagem" value="" name="msg" placeholder="Digite sua mensagem" required></textarea>
                 <div class="botao_e_captcha">
-                    <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LeC39EaAAAAALIS2He-9skDy66QHXV-_HgvP218"></div>
-                    <button id="bt_enviar">ENVIAR</button>
+                    <div id="google_captcha" class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LdG_90aAAAAAIK8l1KYMSnoYv4dqBkhitVfY9Xp"></div>
+                    <button type="button" name="submit" id="bt_enviar">ENVIAR</button>
+                </div>
+                <div class="captcha" id="captcha">
+                    <p>Por favor, preencha a verificação!</p>
+                </div>
+                <div class="campos" id="campos">
+                    <p>Por favor, preencha todos os campos!</p>
+                </div>
+                <div class="processando" id="processando">
+                    <p>Enviando e-mail!</p>
+                </div>
+                <div class="email_ok" id="email_ok">
+                    <p>E-mail enviado!</p>
+                </div>
+                <div class="email_nok" id="email_nok">
+                    <p>E-mail não enviado. Por favor, tente novamente!</p>
                 </div>
             </form>
         </div>
