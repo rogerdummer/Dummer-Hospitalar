@@ -14,7 +14,7 @@ header("Access-Control-Allow-Origin: *");
         $mail->Password = 'Verde14'; 
         $mail->SMTPOptions = array( 'ssl' => array( 'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true ) ); 
         $mail->From = "roger@dummer.srv.br";
-        $mail->FromName = "Site Dummer Tecnologia"; 
+        $mail->FromName = "Novo Site Dummer Tecnologia"; 
         $mail->AddAddress('roger@dummer.srv.br', 'Roger');
         $mail->IsHTML(false);
         $mail->CharSet = 'UTF-8';
