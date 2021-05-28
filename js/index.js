@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                         u_email = '';
                                         u_mensagem = '';
                                         div_email_ok.style.display = 'none';
-                                        location.reload();
                                     }, 3000);
 
                                 } else {
