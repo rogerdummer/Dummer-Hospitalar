@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         let div_campos = document.getElementById("campos");
 
+        let formulario = document.getElementById("formulario_de_contato");
+
         if (u_nome.length == 0 || u_email.length == 0 || u_mensagem.length == 0) {
             div_campos.style.display = 'flex';
             setTimeout(function() {
@@ -48,9 +50,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                                     div_processando.style.display = 'none';
                                     div_email_ok.style.display = 'flex';
                                     setTimeout(function() {
-                                        u_nome.value = '';
-                                        u_email = '';
-                                        u_mensagem = '';
+                                        formulario.reset();
+                                        grecaptcha.reset();
                                         div_email_ok.style.display = 'none';
                                     }, 3000);
 
