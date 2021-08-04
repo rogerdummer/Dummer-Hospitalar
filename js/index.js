@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             let div_email_nok = document.getElementById("email_nok");
 
             $.ajax({
-                url: 'https://localhost/Dummer/verifyCaptcha.php',
+                url: 'https://dummer.srv.br/verifyCaptcha.php',
                 type: 'POST',
                 data: { g_recaptcha_response: captcha_response },
                 dataType: 'json',
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     if (data_captcha == "Captcha_Ok") {
                         div_processando.style.display = 'flex';
                         $.ajax({
-                            url: 'https://localhost/Dummer/sendmail.php',
+                            url: 'https://dummer.srv.br/sendmail.php',
                             type: 'POST',
                             data: { nome: u_nome, email: u_email, msg: u_mensagem },
                             dataType: 'json',
